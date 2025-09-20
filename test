@@ -1,11 +1,46 @@
 module implementation
-horizonta = key ke correspond kitne values de skte
-    -----  depends on data structure, we can store as much we have available memory ------ 
+
+%  in ubuntu to get modules we need to install docker
+%  install docker
+sudo apt update
+sudo apt install docker.io -y
+%  enable and start docker 
+sudo systemctl enable docker
+sudo systemctl start docker
+%  run redis stack 
+sudo docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
+
+Redis will run on localhost:6379
+RedisInsight (GUI) will run on localhost:8001
+
+
+% if already a server running 
+sudo systemctl stop redis-server
+ sudo systemctl disable redis-server
+  or 
+  sudo docker rm -f redis-stack
+%  then again run 
+sudo docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
+
+
+Module	Purpose
+RedisJSON	Store, update, and query JSON documents.
+RediSearch	Full-text search, secondary indexing, and querying.
+RedisGraph	Graph database with Cypher-like queries.
+RedisTimeSeries	Efficiently handle time-series data for metrics/logs.
+RedisBloom	Probabilistic data structures (Bloom filter, Cuckoo filter).
+RedisAI	  Store and run machine learning models.
+
+
+
+
+horizontal = key ke correspond kitne values de skte
+    -----  depends on data structure, we can store as much we have available memory ------  
+  time complexity
 single key map to diff data structure like string(one single value),list(multiple value in one key),
- set(many unique values under one key), hash(multiple key value pairs in one key like json)
+set(many unique values under one key), hash(multiple key value pairs in one key like json)
 
 vertical = kitna object ka size, key value pairs
-
 number of keys and size of keys depends upon RAM(agr 8 gb hai to millions of keys store kr skte )
 
 
@@ -15,13 +50,15 @@ userid=4, status="disabled"
 
 set get del lpush rpush lpop rpop y sb implement krna
 
+
+
 large data set ko handle 
 pub/sub implementation code
 
 
 
 
-///////////
+% connect to redis insight 
  sudo service redis-server start
  redis-cli
  Ambika123
